@@ -41,10 +41,23 @@ public class Tests {
 		passwordFeild.sendKeys("PassWord");
 		passwordFeild.submit();
 
-		WebElement previousUserAndPassword = driver
-				.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/blockquote/blockquote[2]/blockquote"));
-		assertTrue(previousUserAndPassword.getText().contains("My_User_Name")
-				&& previousUserAndPassword.getText().contains("PassWord"));
+		WebElement login = driver.findElement(
+				By.xpath("/html/body/div/center/table/tbody/tr[2]/td/div/center/table/tbody/tr/td[2]/p/small/a[4]"));
+		login.click();
+
+		userName = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/table/tbody/tr[1]/td[2]/p/input"));
+		userName.sendKeys("My_User_Name");
+		passwordFeild = driver.findElement(By.xpath(
+				"/html/body/table/tbody/tr/td[1]/form/div/center/table/tbody/tr/td[1]/table/tbody/tr[2]/td[2]/p/input"));
+		passwordFeild.sendKeys("PassWord");
+		passwordFeild.submit();
+
+		WebElement successCheck = driver
+				.findElement(By.xpath("/html/body/table/tbody/tr/td[1]/big/blockquote/blockquote/font/center/b"));
+		successCheck.getText().contains("**Login Sucess");
+
+		assertTrue(successCheck.getText().contains("**Successful Login**"));
 
 	}
 
